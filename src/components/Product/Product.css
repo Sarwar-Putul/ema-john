@@ -9,3 +9,12 @@
     color: blue;
     font-weight: 400;
 }
+.main-button{
+    color: white;
+    background-color:goldenrod;
+    border: 1px solid gold;
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}
