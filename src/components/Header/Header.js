@@ -5,7 +5,11 @@ const Header = () => {
     return (
         <div className="header">
             <img src={logo} alt=""/>
-            <nav><a href="/Shop">Shop</a><a href="/Order Review">Order Review</a><a href="/Manage Inventory">Manage Inventory</a></nav>
+            <nav>
+                <a href="/Shop">Shop</a>
+                <a href="/Review">Order Review</a>
+                <a href="/Inventory">Manage Inventory</a>
+            </nav>
         </div>
     );
 };
