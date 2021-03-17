@@ -6,15 +6,14 @@ import ReviewItem from '../ReviewItem/ReviewItem';
 import happyImage from '../../images/giphy.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSortAlphaUp} from '@fortawesome/free-solid-svg-icons'
+import { useHistory } from 'react-router';
 
 const Review = () => {
 const [cart, setCart] = useState([]);
 const [orderPlace, setOrderPlace] = useState(false)
-
-const handlePlaceOrder =() => {
-    setCart([]);
-    setOrderPlace(true);
-    processOrder()
+const history = useHistory()
+const handleProceedCheckout =() => {
+    history.push('/Shipment');
 }
 
 const removeProduct = (productKey)=>{
@@ -57,7 +56,7 @@ const removeProduct = (productKey)=>{
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>
-                    <button onClick={handlePlaceOrder} className="main-button"><FontAwesomeIcon icon={faSortAlphaUp}/>  Place order</button>
+                    <button onClick={handleProceedCheckout} className="main-button"><FontAwesomeIcon icon={faSortAlphaUp}/> Proceed Checkout</button>
                 </Cart>
 
             </div>
