@@ -3,6 +3,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
+import './Login.css'
+import { useHistory, useLocation } from 'react-router';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -14,10 +16,12 @@ function Login() {
     email: '',
     password: '',
     picture: '',
-    error:''
+    error:'',
   });
-const [loggedInUser, setLoggedInUser] = useContext(UserContext)
-
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
   const googleProvider = new firebase.auth.GoogleAuthProvider();
   const fbProvider = new firebase.auth.FacebookAuthProvider();
@@ -87,7 +91,7 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
       setUser(newUserInfo);
     }
   }
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     if(!newUser && user.email && user.password){
       firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
       .then(res => {
@@ -103,7 +107,7 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
         newUserInfo.success = false;
         setUser(newUserInfo);
         });
-
+      }
     if(!newUser && user.email && user.password){
         firebase.auth().signInWithEmailAndPassword(user.email, user.password)
     .then(res => {
@@ -112,6 +116,7 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
         newUserInfo.success = true;
         setUser(newUserInfo);
         setLoggedInUser(newUserInfo);
+        history.replace(from);
         console.log('sign in user info', res.user);
         })
     .catch(error => {
@@ -121,10 +126,10 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
         setUser(newUserInfo);
         });
         }
-
+        e.preventDefault();
     };
-    e.preventDefault();
-  }
+    
+  
   const updateUserName = name => {
           const user = firebase.auth().currentUser;
           user.updateProfile({
@@ -138,10 +143,10 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
   return (
     <div style= {{textAlign: 'center'}}>
       {
-        user.isSignIn ? <button onClick ={handleSignOut}>Sign out</button> : <button onClick ={handleSignIn}>Sign in</button>
+        user.isSignIn ? <button className="btn"onClick ={handleSignOut}>Sign out</button> : <button className="btn" onClick ={handleSignIn}>Sign in</button>
       }
       <br/>
-      <button onClick ={handleFbSignIn}>Facebook login</button>
+      <button className="btn" onClick ={handleFbSignIn}>Facebook login</button>
       {
         user.isSignIn && <div>
               <p>Welcome, {user.name}</p>
@@ -161,7 +166,7 @@ const [loggedInUser, setLoggedInUser] = useContext(UserContext)
             <br/>
             <input type="password" onBlur={handleBlur} name="password" placeholder="Type your password" required/>
             <br/>
-            <input type="submit" value={ newUser ? 'Sign Up' : 'Sign In' }/>
+            <input className="btn" type="submit" value={ newUser ? 'Sign Up' : 'Sign In' }/>
         </form>
           <p style= {{color: 'red'}}>{user.error}</p>
           {
