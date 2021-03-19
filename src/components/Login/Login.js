@@ -7,15 +7,15 @@ import { createUserWithEmailAndPassword, handleFbSignIn, handleGoogleSignIn, han
 function Login() {
   const [newUser, setNewUser] = useState(false);
   const [user, setUser] = useState({
-    isSignIn: false,
+    isSignedIn: false,
     name: '',
     email: '',
     password: '',
-    picture: '',
-    error:'',
+    photo: ''
   });
-  initializeLoginFramework();
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    initializeLoginFramework();
+
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
@@ -59,6 +59,7 @@ function Login() {
       const isPasswordHasValid =/\d{1}/.test(e.target.value);
       isFildValid = isPasswordValid && isPasswordHasValid;
     }
+
     if (isFildValid) {
       const newUserInfo ={...user}
       newUserInfo[e.target.name] = e.target.value;
@@ -71,7 +72,7 @@ function Login() {
         .then(res => {
           handleResponse(res, true);
         })
-        }
+      }
 
       if(!newUser && user.email && user.password){
         signInWithEmailAndPassword(user.email, user.password)
@@ -80,19 +81,21 @@ function Login() {
           })
         }
         e.preventDefault();
-    };
+    }
+
+
   return (
     <div style= {{textAlign: 'center'}}>
       {
-        user.isSignIn ? <button className="btn"onClick ={signOut}> Sign out </button> : <button className="btn" onClick ={googleSignIn}> Sign in </button>
+        user.isSignedIn ? <button className="btn" onClick ={signOut}> Sign out </button> : <button className="btn" onClick ={googleSignIn}> Sign in </button>
       }
       <br/>
       <button className="btn" onClick ={fbSignIn}>Facebook login</button>
       {
-        user.isSignIn && <div>
+        user.isSignedIn && <div>
               <p>Welcome, {user.name}</p>
               <p>Email: {user.email}</p>
-              <p>Image: <img src={user.picture} alt=""/></p>
+              <img src={user.photo} alt=""/>
         </div>
       }
 

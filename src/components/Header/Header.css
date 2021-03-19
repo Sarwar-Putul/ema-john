@@ -11,13 +11,26 @@
     text-align: left;
 }
 nav a{
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 20px 0;
+    color: #03e9f4;
+    font-size: 14px;
     text-decoration: none;
-    color: white;
-    margin-right: 20px;
-    padding: 5px;
+    /*overflow: hidden;*/
+    transition: 0.5s;
+    letter-spacing: 1px;
+    border: #03e9f4;
+    border-radius:  15px;
 }
 nav a:hover{
-    background-color:gray;
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
 }
 
 .btn{
