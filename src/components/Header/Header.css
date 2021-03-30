@@ -10,6 +10,15 @@
     font-size: 20px;
     text-align: left;
 }
+nav h6{
+    position: relative;
+    display: inline-block;
+    margin-left: 23%;
+    font-size: 14px;
+    
+    
+    
+}
 nav a{
     position: relative;
     display: inline-block;
@@ -36,7 +45,6 @@ nav a:hover{
 .btn{
     position: relative;
     display: inline-block;
-    padding: 15px 30px;
     margin: 20px 0;
     color: #03e9f4;
     font-size: 14px;

@@ -1,4 +1,3 @@
-import fakeData from '../../fakeData';
 import {useEffect, useState} from 'react';
 import './Shop.css';
 import Product from '../Product/Product';
@@ -9,19 +8,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearchLocation } from '@fortawesome/free-solid-svg-icons'
 
 const Shop = () => {
-    const first10= fakeData.slice(0,10);
-    const [products, setProducts] = useState(first10);
+    //const first10= fakeData.slice(0,10);
+    const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        fetch('https://still-tor-85555.herokuapp.com/products')
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    }, []);
+
+
     useEffect(() => {
         const savedCart = getDatabaseCart();
         const productKeys = Object.keys(savedCart);
-        const previousCart = productKeys.map(existingKey => {
-            const product = fakeData.find(pd => pd.key == existingKey)
-            product.quantity = savedCart[existingKey];
-            return product;
+        fetch('https://still-tor-85555.herokuapp.com/productsByKeys', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify(productKeys)
         })
-        setCart(previousCart)
-    }, []);
+        .then(res => res.json())
+        .then(data => setCart(data))       
+    }, [products]);
     
     const handleAddProduct = (product) =>{
         const toBeAddedKey = product.key;
