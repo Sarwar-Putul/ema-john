@@ -9,7 +9,7 @@ const Header = () => {
         <div className="header">
             <img src={logo} alt=""/>
             <nav>
-                <Link to ="/Shop">Shop</Link>
+                <Link to ="/">Shop</Link>
                 <Link to ="/Review">Order Review</Link>
                 <Link to ="/Inventory">Manage Inventory</Link>
                 <button className="btn" onClick={() => setLoggedInUser({})}>Sign Out</button>

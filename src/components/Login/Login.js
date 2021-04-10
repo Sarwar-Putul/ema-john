@@ -85,37 +85,39 @@ function Login() {
 
 
   return (
-    <div className="container" style= {{textAlign: 'center'}}>
-      {
-        user.isSignedIn ? <button className="btn" onClick ={signOut}> Sign out </button> : <button className="btn" onClick ={googleSignIn}> Sign in </button>
-      }
-      <br/>
-      <button className="btn" onClick ={fbSignIn}>Facebook login</button>
-      {
-        user.isSignedIn && <div>
-              <p>Welcome, {user.name}</p>
-              <p>Email: {user.email}</p>
-              <img src={user.photo} alt=""/>
-        </div>
-      }
-
-      <h1> Authentication</h1>
-      <input type="checkbox" onChange={()=> setNewUser(!newUser)} name="newUser" id=""/>
-      <label htmlFor="newUser">New User Sign Up</label>
-      
-        <form onSubmit={handleSubmit}>
-            {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Type name" required/>}
-            <br/>
-            <input type="text" onBlur={handleBlur} name="email"  placeholder="Type your email address" required/>
-            <br/>
-            <input type="password" onBlur={handleBlur} name="password" placeholder="Type your password" required/>
-            <br/>
-            <input className="btn" type="submit" value={ newUser ? 'Sign Up' : 'Sign In' }/>
-        </form>
-          <p style= {{color: 'red'}}>{user.error}</p>
+    <div className="login-container">
+        <div className="container" style= {{textAlign: 'center'}}>
           {
-            user.success && <p style= {{color:'green'}}>User {newUser ? 'created' : 'Logged in'} successfully</p>
+            user.isSignedIn ? <button className="btn" onClick ={signOut}> Sign out </button> : <button className="btn" onClick ={googleSignIn}> Sign in </button>
           }
+          <br/>
+          <button className="btn" onClick ={fbSignIn}>Facebook login</button>
+          {
+            user.isSignedIn && <div>
+                  <p>Welcome, {user.name}</p>
+                  <p>Email: {user.email}</p>
+                  <img src={user.photo} alt=""/>
+            </div>
+          }
+
+          <h1> Authentication</h1>
+          <input type="checkbox" onChange={()=> setNewUser(!newUser)} name="newUser" id=""/>
+          <label htmlFor="newUser">New User Sign Up</label>
+          
+            <form onSubmit={handleSubmit}>
+                {newUser && <input type="text" name="name" onBlur={handleBlur} placeholder="Type name" required/>}
+                <br/>
+                <input type="text" onBlur={handleBlur} name="email"  placeholder="Type your email address" required/>
+                <br/>
+                <input type="password" onBlur={handleBlur} name="password" placeholder="Type your password" required/>
+                <br/>
+                <input className="btn" type="submit" value={ newUser ? 'Sign Up' : 'Sign In' }/>
+            </form>
+              <p style= {{color: 'red'}}>{user.error}</p>
+              {
+                user.success && <p style= {{color:'green'}}>User {newUser ? 'created' : 'Logged in'} successfully</p>
+              }
+        </div>
     </div>
   );
 }

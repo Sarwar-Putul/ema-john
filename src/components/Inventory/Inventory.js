@@ -1,4 +1,5 @@
 import React from 'react';
+import './Inventory.css'
 
 const Inventory = () => {
 
@@ -13,17 +14,14 @@ const Inventory = () => {
 
     
     return (
-        <div>
+        <div className="inventory col-md-3">
             <form action="">
                 <p><span>Name</span><input type="text"/></p>
                 <p><span>Price</span><input type="text"/></p>
                 <p><span>Quantity</span><input type="text"/></p>
                 <p><span>Upload image</span><input type="file"/></p>
-                <button onClick={handleAddProduct}>Add Product</button>
-            </form>
-
-
-            
+                <button className="btn-danger"  onClick={handleAddProduct}>Add Product</button>
+            </form>   
         </div>
     );
 };

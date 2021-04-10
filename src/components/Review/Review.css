@@ -1,0 +1,9 @@
+.main-button{
+    color: white;
+    background-color: goldenrod;
+    border: 1px solid gold;
+    width: 180px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}

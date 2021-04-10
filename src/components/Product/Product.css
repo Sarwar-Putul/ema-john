@@ -4,9 +4,15 @@
     margin-bottom: 5px;
     margin-right: 10px;
     padding: 5px;
+    color: #ffc107;
+}
+.product a {
+    color: #ffc107;
+    text-decoration: none;
+    background-color: transparent;
 }
 .product-name {
-    color: blue;
+    color: rgb(255, 255, 255);
     font-weight: 400;
 }
 .main-button{

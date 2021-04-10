@@ -6,6 +6,7 @@ import happyImage from '../../images/giphy.gif';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSortAlphaUp} from '@fortawesome/free-solid-svg-icons'
 import { useHistory } from 'react-router';
+import './Review.css'
 
 const Review = () => {
 const [cart, setCart] = useState([]);
